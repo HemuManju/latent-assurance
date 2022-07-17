@@ -1,0 +1,28 @@
+##-----------------------------------------------------#
+# Training parameters
+NUM_EPOCHS: 200
+BATCH_SIZE: 64
+LEARNING_RATE: 0.0001
+DROP_OUT: 0.10
+TEST_SIZE: 0.15
+VALID_SIZE: 0.15
+
+##-----------------------------------------------------#
+# Data Parameters
+obs_size: 1
+n_actions: 3
+number_workers: 8
+
+##-----------------------------------------------------#
+# Path(s)
+raw_data_path: null
+logs_path: 'logs/'
+train_data_path: 'data/raw/train'
+val_data_path: 'data/raw/validation'
+test_data_path: 'data/raw/test'
+
+check_point_restore_path: null
+
+##-----------------------------------------------------#
+# Seed(s)
+pytorch_seed: 1337
