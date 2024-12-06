@@ -1,13 +1,10 @@
-from importlib.resources import path
 from pathlib import Path
 import natsort
 
 import webdataset as wds
-import torch
 
 from itertools import islice, cycle
 
-from .utils import get_preprocessing_pipeline
 
 
 def concatenate_samples(samples, config):

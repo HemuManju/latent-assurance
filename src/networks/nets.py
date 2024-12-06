@@ -3,9 +3,7 @@ import pytorch_lightning as pl
 import torch
 
 
-from src.visualization.visualize import interactive_show_grid
 
-from .utils import build_model, Flatten
 
 
 class ConvNet(pl.LightningModule):

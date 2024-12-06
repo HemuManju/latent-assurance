@@ -1,9 +1,7 @@
-import numpy as np
 import matplotlib.pyplot as plt
 
 import pandas as pd
 
-import torchvision.transforms.functional as F
 
 
 def show_grid(imgs):

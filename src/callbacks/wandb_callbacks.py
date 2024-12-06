@@ -1,5 +1,4 @@
 from sklearn.metrics import precision_score, recall_score, f1_score
-from pytorch_lightning.loggers import WandbLogger
 from wandb.sdk.wandb_run import Run as wandb_run
 from pytorch_lightning import Callback
 import pytorch_lightning as pl
@@ -32,7 +31,7 @@ class SaveCodeToWandb(Callback):
 
     def on_sanity_check_end(self, trainer, pl_module):
         """Upload files when all validation sanity checks end."""
-        logger = get_wandb_logger(trainer=trainer)
+        get_wandb_logger(trainer=trainer)
 
         code = wandb.Artifact('project-source', type='code')
         for path in glob.glob(os.path.join(self.code_dir, '**/*.py'),
@@ -53,7 +52,7 @@ class UploadAllCheckpointsToWandb(Callback):
 
     def on_train_end(self, trainer, pl_module):
         """Upload ckpts when training ends."""
-        logger = get_wandb_logger(trainer=trainer)
+        get_wandb_logger(trainer=trainer)
 
         ckpts = wandb.Artifact('experiment-ckpts', type='checkpoints')
         if self.upload_best_only:

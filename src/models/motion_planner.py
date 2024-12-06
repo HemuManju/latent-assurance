@@ -1,5 +1,3 @@
-import torch
-import torch.nn as nn
 import pytorch_lightning as pl
 
 from torch.optim import Adam
@@ -24,7 +22,7 @@ class MotionPlanner(pl.LightningModule):
         x, y = batch
 
         # Predict and calculate loss
-        output = self.forward(x)
+        self.forward(x)
 
         # TODO: Implement criterion
         loss = 0  # criterion(output, y)
@@ -36,7 +34,7 @@ class MotionPlanner(pl.LightningModule):
         x, y = batch
 
         # Predict and calculate loss
-        output = self.forward(x)
+        self.forward(x)
 
         # TODO: Implement criterion
         loss = 0  # criterion(output, y)
@@ -55,13 +53,8 @@ class MotionPlanner(pl.LightningModule):
 
     def configure_optimizers(self):
         optimizer = Adam(self.parameters(), lr=self.h_params['LEARNING_RATE'])
-        lr_scheduler = ReduceLROnPlateau(
+        ReduceLROnPlateau(
             optimizer, patience=10, factor=0.9, verbose=True
         )
 
-        scheduler = {
-            'scheduler': lr_scheduler,
-            'reduce_on_plateau': True,
-            'monitor': 'losses/val_loss',  # val_checkpoint_on is val_loss passed in as checkpoint_on
-        }
         return [optimizer]
